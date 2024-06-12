@@ -12,7 +12,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.*
 import androidx.compose.material.Button
+import androidx.compose.foundation.border
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -23,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import multicalculator.composeapp.generated.resources.Res
+import androidx.compose.ui.unit.sp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,28 +41,23 @@ class MainActivity : ComponentActivity() {
 
 @Preview
 @Composable
-fun CalcView(){
+fun CalcView() {
     val displayText = remember { mutableStateOf("0") }
-    // Creates a column with a light gray background for the calculator layout.
-    Column (modifier = Modifier.background(Color.LightGray)){
+    Column(modifier = Modifier.fillMaxSize().background(Color.LightGray)) {
         Row {
-            // Displays the current value on the calculator screen.
             CalcDisplay(display = displayText)
         }
         Row {
             Column {
-                // Creates rows of numeric buttons from 1 to 9.
                 for (i in 7 downTo 1 step 3) {
                     CalcRow(display = displayText, startNum = i, numButtons = 3)
                 }
                 Row {
-                    // Adds a button for the number 0 and the equals button.
                     CalcNumericButton(number = 0, display = displayText)
                     CalcEqualsButton(display = displayText)
                 }
             }
             Column {
-                // Adds buttons for basic arithmetic operations.
                 CalcOperationButton(operation = "+", display = displayText)
                 CalcOperationButton(operation = "-", display = displayText)
                 CalcOperationButton(operation = "*", display = displayText)
@@ -69,47 +68,63 @@ fun CalcView(){
 }
 
 @Composable
-fun CalcRow(display: MutableState<String>, startNum: Int, numButtons: Int){
-    // Creates a row of numeric buttons starting from the specified number.
+fun CalcRow(display: MutableState<String>, startNum: Int, numButtons: Int) {
     val endNum = startNum + numButtons
     Row(modifier = Modifier.padding(0.dp)) {
-        for(i in startNum until endNum) {
-            CalcNumericButton(number = i, display = display)
+        for (num in startNum until endNum) {
+            CalcNumericButton(number = num, display = display)
         }
     }
 }
 
 @Composable
-fun CalcDisplay(display: MutableState<String>){
-    // Displays the current value on the calculator screen.
-    Text(text = display.value, modifier = Modifier
-        .height(50.dp)
-        .padding(5.dp)
-        .fillMaxWidth())
+fun CalcDisplay(display: MutableState<String>) {
+    Text(
+        text = display.value,
+        modifier = Modifier
+            .height(50.dp)
+            .padding(5.dp)
+            .fillMaxWidth()
+            .background(Color.LightGray)
+            .border(2.dp, Color.Black)
+            .padding(5.dp)
+
+    )
 }
 
+
 @Composable
-fun CalcNumericButton(number: Int, display: MutableState<String>){
-    // Creates a button for a numeric value.
-    Button(onClick = { display.value += number.toString() }, modifier = Modifier.padding(4.dp)) {
-        Text(number.toString())
+fun CalcNumericButton(number: Int, display: MutableState<String>) {
+    Button(
+        onClick = {
+            if (display.value == "0") {
+                display.value = number.toString()
+            } else {
+                display.value += number.toString()
+            }
+        },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = number.toString())
     }
 }
 
 @Composable
-fun CalcOperationButton(operation: String, display: MutableState<String>){
-    // Creates a button for an arithmetic operation.
-    Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(4.dp)) {
-        Text(operation)
+fun CalcOperationButton(operation: String, display: MutableState<String>) {
+    Button(
+        onClick = { /*  Operation logic will be implemented later in next assignment */ },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = operation)
     }
 }
 
 @Composable
-fun CalcEqualsButton(display: MutableState<String>){
-    // Creates the equals button to calculate and display the result.
-    Button(onClick = { display.value = "0" }, modifier = Modifier.padding(4.dp)) {
-        Text("=")
+fun CalcEqualsButton(display: MutableState<String>) {
+    Button(
+        onClick = { display.value = "0" },
+        modifier = Modifier.padding(4.dp)
+    ) {
+        Text(text = "=")
     }
 }
-
-
