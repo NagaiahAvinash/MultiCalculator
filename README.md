@@ -25,17 +25,26 @@ Current Progress
 
 Progress Record:
 
-Project Initialization: Successfully set up a new Kotlin Multiplatform project named MultiCalculator.
-Basic Functionality Implementation: Developed the core functionalities of the calculator. This includes:
-An add function to sum two numbers.
-A subtract function to find the difference between two numbers.
-A multiply function to calculate the product of two numbers.
-A divide function to compute the quotient of two numbers, with error handling for division by zero.
-The implementation of these functions ensures that the app can handle basic arithmetic operations, laying a strong foundation for further enhancements and additional features in future iterations.
+1:Project Initialization: Successfully set up a new Kotlin Multiplatform project named MultiCalculator.
 
 
-Future Development:
+2:Basic Functionality Implementation: Developed the core functionalities of the calculator. This includes:
 
-Moving forward, the MultiCalculator project will expand to include a user-friendly interface. The focus will also be on optimizing the app for both Android and iOS platforms to ensure seamless performance and user experience.
+>An add function to sum two numbers.
+
+>A subtract function to find the difference between two numbers.
+
+>A multiply function to calculate the product of two numbers.
+
+>A divide function to compute the quotient of two numbers, with error handling for division by zero.
+
+
+3:Calculator Logic and UI Implementation: Implemented the logic and user interface for the calculator, enabling users to perform basic arithmetic operations seamlessly. The UI components include buttons for numbers and operations, a display area for showing results, and layout arrangements for a user-friendly interface.
+
+
+Future Development
+
+Moving forward, the MultiCalculator project may expand to include more advanced features such as scientific calculations, history of operations, and additional settings for user customization. The focus will also be on optimizing the app for both Android and iOS platforms to ensure seamless performance and user experience.
+
 
 This document provides a comprehensive overview of the MultiCalculator app, detailing its current status and future development plans. This record is intended to keep track of the project's progress and ensure that all milestones are documented and met as per the course requirements.
